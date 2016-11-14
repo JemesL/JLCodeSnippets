@@ -9,7 +9,7 @@
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>@property (weak,nonatomic) &lt;#JLToolBar#&gt; *&lt;#toolBar#&gt;;</string>
+	<string>@property (nonatomic, weak) &lt;#JLToolBar#&gt; *&lt;#toolBar#&gt;;</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>403D0E7E-81AC-4146-AA61-FFE77A5EE083</string>
 	<key>IDECodeSnippetLanguage</key>
