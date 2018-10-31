@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>newcolv</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>class &lt;#value#&gt;: UIView, UICollectionViewDelegateFlowLayout{
+    typealias &lt;#value#&gt;Section = SectionModel&lt;String, &lt;#value#&gt;&gt;
+    let disposeBag = DisposeBag()
+    var lineNum: Int = 1
+    var collectionView: UICollectionView!
+    var model = BehaviorRelay&lt;[&lt;#value#&gt;]&gt;(value: [])
+    var sections: Driver&lt;[&lt;#value#&gt;]&gt;?
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupViews()
+        makeConstraints()
+        bindVM()
+    }
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
+    deinit {
+        collectionView.removeObserver(self, forKeyPath: "contentSize")
+    }
+    
+}
+
+extension BookMovieRankListColV {
+    
+    func setData(_ data: &lt;#value#&gt;) {
+        model.accept()
+    }
+    
+    func setupViews() {
+        //定义布局方式
+        let flowLayout = UICollectionViewFlowLayout()
+        
+        //创建集合视图
+        collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: bmy_screenWidth, height: 400),
+                                               collectionViewLayout: flowLayout)
+        collectionView.backgroundColor = UIColor.white
+        collectionView.addObserver(self, forKeyPath: "contentSize", options: .new, context: nil)
+        //创建一个重用的单元格
+        collectionView.register(&lt;#value#&gt;.self,
+                                     forCellWithReuseIdentifier: &lt;#value#&gt;.reuseIdentifier())
+        addSubview(collectionView)
+    }
+    
+    func bindVM() {
+        
+        sections = model.skip(1).map { (list) -&gt; [&lt;#value#&gt;Section] in
+            return [&lt;#value#&gt;Section(model: "", items: list)]
+        }.asDriver(onErrorJustReturn: [])
+        
+        let ds = RxCollectionViewSectionedReloadDataSource&lt;&lt;#value#&gt;Section&gt;(configureCell: {
+            [weak self] (dataSource, collectionView, indexPath, item) -&gt; UICollectionViewCell in
+            let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: &lt;#value#&gt;.reuseIdentifier(),
+                for: indexPath
+                ) as! &lt;#value#&gt;
+            cell.setData(&lt;#value#&gt;)
+            return cell
+        })
+        
+        sections?.drive(collectionView.rx.items(dataSource: ds)).disposed(by: disposeBag)
+        
+        //设置代理
+        collectionView.rx.setDelegate(self)
+            .disposed(by: disposeBag)
+//        collectionView.delegate = self
+    }
+    
+    func makeConstraints() {
+        collectionView.snp.makeConstraints { make in
+            make.edges.equalTo(UIEdgeInsetsMake(0, 0, 0, 0))
+            make.height.equalTo(0)
+        }
+    }
+    
+    //设置单元格尺寸
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -&gt; CGSize {
+        let width = collectionView.bounds.width
+        let cellWidth = (width - 30) / CGFloat(lineNum) //每行显示4个单元格
+        return CGSize(width: cellWidth, height: 240) //单元格宽度为高度1.5倍
+    }
+}
+
+extension BookMovieRankListColV {
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        let size = collectionView.contentSize
+        if !collectionView.constraints.isEmpty {
+            collectionView.snp.updateConstraints { (make) in
+                make.height.equalTo(size.height)
+            }
+        }
+    }
+}
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>42D61860-B60C-4A58-B4A5-A8599755F093</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Generic</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>new collectionview</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

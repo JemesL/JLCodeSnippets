@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>newservice</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>import Foundation
+import Moya
+
+enum &lt;#value#&gt; {
+    case &lt;#value#&gt;(params: &lt;#value#&gt;)
+}
+
+extension &lt;#value#&gt;: TargetType, AccessTokenAuthorizable {
+    
+    var authorizationType: AuthorizationType {
+        return AuthorizationType.bearer
+    }
+    
+    var baseURL: URL { return URL(string: BASE_URL)! }
+    
+    var path: String {
+        switch self {
+        case .&lt;#value#&gt;:
+            return "&lt;#value#&gt;"
+        }
+    }
+    var method: Moya.Method {
+        switch self {
+        case .&lt;#value#&gt;:
+            return .get
+        }
+    }
+    var task: Task {
+        switch self {
+        case .&lt;#value#&gt;(let params):
+            return .requestParameters(parameters: params, encoding: JSONEncoding.default)
+        }
+    }
+    var sampleData: Data {
+        return "".utf8Encoded
+    }
+    var headers: [String: String]? {
+        let head: [String: String] = ["Content-type": "application/json"]
+        return head
+    }
+}
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>5682F373-B5D5-4E52-9239-3D0A04979358</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Generic</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>New API service</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>
