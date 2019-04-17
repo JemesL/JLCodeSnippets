@@ -2,20 +2,24 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>IDECodeSnippetCompletionPrefix</key>
-	<string>uilabel</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
-		<string>CodeExpression</string>
+		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>[[UILabel alloc] initWithFrame:CGRectZero];</string>
+	<string>switch e {
+            case .trueCase:
+                &lt;#code#&gt;
+            case .falseCase:
+                &lt;#code#&gt;
+            }
+</string>
 	<key>IDECodeSnippetIdentifier</key>
-	<string>64577C21-6764-4298-820E-E4D6430EFF08</string>
+	<string>736A053A-D507-4B5C-BD4A-AA7D46EF8C67</string>
 	<key>IDECodeSnippetLanguage</key>
-	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<string>Xcode.SourceCodeLanguage.Generic</string>
 	<key>IDECodeSnippetTitle</key>
-	<string>UILabel</string>
+	<string>My Code Snippet</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>

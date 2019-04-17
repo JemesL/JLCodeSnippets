@@ -3,19 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string>uilabel</string>
+	<string>truesb</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
-		<string>CodeExpression</string>
+		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>[[UILabel alloc] initWithFrame:CGRectZero];</string>
+	<string>trueSB = { btn in
+            &lt;#value#&gt;
+        }</string>
 	<key>IDECodeSnippetIdentifier</key>
-	<string>64577C21-6764-4298-820E-E4D6430EFF08</string>
+	<string>6375693F-C181-43AA-B4FC-108468CD6DBD</string>
 	<key>IDECodeSnippetLanguage</key>
-	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<string>Xcode.SourceCodeLanguage.Generic</string>
 	<key>IDECodeSnippetTitle</key>
-	<string>UILabel</string>
+	<string>trueSB</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>
