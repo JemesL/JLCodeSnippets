@@ -1,3 +1,3 @@
-
+代码块存放路径
 ### 代码块存放路径
-/Users/JL/Library/Developer/Xcode/UserData/CodeSnippets
+/Users/Je.L/Library/Developer/Xcode/UserData/CodeSnippets
