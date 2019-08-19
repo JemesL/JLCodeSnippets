@@ -3,42 +3,19 @@
 <plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string>newctrl</string>
+	<string>hex</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>import Foundation
-import UIKit
-
-class &lt;#value#&gt;: BaseViewController {
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        bmy_setNavBarTitle(title: "&lt;#value#&gt;")
-        setupViews()
-        setupConstraints()
-    }
-}
-
-extension &lt;#value#&gt; {
-    func setData() {
-    }
-    
-    func setupViews() {
-    }
-    
-    func setupConstraints() {
-    }
-}
-</string>
+	<string>UIColor(hexString: "&lt;#value#&gt;")</string>
 	<key>IDECodeSnippetIdentifier</key>
-	<string>5B04AAA2-0CF4-427E-BFD3-1AE710633692</string>
+	<string>CA3069FD-B443-412F-8266-6ABDF3FAEBD5</string>
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Generic</string>
 	<key>IDECodeSnippetTitle</key>
-	<string>newctrl</string>
+	<string>color hex</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>

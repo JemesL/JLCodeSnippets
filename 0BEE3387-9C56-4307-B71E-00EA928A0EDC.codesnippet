@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>newstackctrl</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>import Foundation
+import UIKit
+
+class &lt;#value#&gt;: BaseViewController {
+
+    fileprivate let edge = UIEdgeInsetsMake(10, 20, 10, 20)
+
+    fileprivate var scrollView: UIScrollView!
+    fileprivate var stackViewBG: UIView!
+    fileprivate var stackView: UIStackView!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        bmy_setNavBarTitle(title: "StackVCtrl")
+        setupViews()
+        setupConstraints()
+    }
+}
+
+extension &lt;#value#&gt; {
+
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        scrollView.contentSize = CGSize(width: stackView.frame.width, height: stackView.frame.height + 100)
+    }
+}
+
+extension &lt;#value#&gt;: UIScrollViewDelegate {
+    func setData() {
+    }
+
+    func setupViews() {
+        scrollView = UIScrollView()
+        scrollView.delegate = self
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.backgroundColor = UIColor(hexString: "#F4F5F7")
+        scrollView.contentSize = CGSize(width: bmy_screenWidth, height: bmy_screenHeight)
+
+        //创建容器，并设为竖直排列，置于scrollView上
+        stackView = UIStackView()
+        stackView.addObserver(self, forKeyPath: "bounds", options: .new, context: nil)
+        stackView.axis = .vertical
+        stackView.distribution = .fill
+        stackView.alignment = .fill
+
+        stackViewBG = UIView()
+
+        view.addSubview(scrollView)
+        scrollView.addSubview(stackViewBG)
+        stackViewBG.addSubview(stackView)
+
+        scrollView.snp.makeConstraints { make in
+            make.left.right.equalTo(0)
+            make.top.equalTo(topLayoutGuide.snp.bottom)
+            make.bottom.equalTo(0)
+        }
+        stackViewBG.snp.makeConstraints { make in
+            make.top.equalTo(0)
+            make.left.equalTo(0)
+            make.right.equalTo(0)
+            make.centerX.equalToSuperview()
+        }
+        stackView.snp.makeConstraints { make in
+            make.edges.equalTo(UIEdgeInsets.zero)
+        }
+    }
+
+    func setupConstraints() {
+    }
+}
+
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>0BEE3387-9C56-4307-B71E-00EA928A0EDC</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Generic</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>new stackView scrollview controller</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>0</integer>
+</dict>
+</plist>
