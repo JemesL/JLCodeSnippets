@@ -10,7 +10,7 @@
 	</array>
 	<key>IDECodeSnippetContents</key>
 	<string>import UIKit
-fileprivate let Edge = UIEdgeInsetsMake(15, LEFT_RIGHT_MARGIN, 15, LEFT_RIGHT_MARGIN)
+fileprivate let Edge = UIEdgeInsets(top: 15, left: LEFT_RIGHT_MARGIN, bottom: 15, right: LEFT_RIGHT_MARGIN)
 
 class &lt;#value#&gt;: UIView {
 
@@ -44,6 +44,8 @@ extension &lt;#value#&gt; {
 	<string>8437F3FC-5ADD-483C-A690-F4124E74C647</string>
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Generic</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
 	<key>IDECodeSnippetTitle</key>
 	<string>NewViewDefaultData</string>
 	<key>IDECodeSnippetUserSnippet</key>

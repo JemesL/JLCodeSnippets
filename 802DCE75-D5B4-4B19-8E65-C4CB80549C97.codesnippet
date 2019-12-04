@@ -6,37 +6,40 @@
 	<string>newvm</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
+		<string>TopLevel</string>
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>class XXXVM: BaseVM, ViewModelType {
+	<string>import RxSwift
+import RxCocoa
+import RxDataSources
+
+class XXXVM: BaseVM, ViewModelType {
     
-    typealias XXXSection = SectionModel&lt;String, XXXModel&gt;
+    typealias Section = SectionModel&lt;String, XXXModel&gt;
     fileprivate var loadData = PublishSubject&lt;Int&gt;()
     fileprivate var page:Int = 1
+    fileprivate var models = BehaviorRelay&lt;[XXXModel]&gt;(value: [])
+    fileprivate var metadata = BehaviorRelay&lt;MetaData?&gt;(value: nil)
     
-    public var models = BehaviorRelay&lt;[XXXModel]&gt;(value: [])
-    public var metaData: MetaData?
-    
-    var input: Input?
-    var output: Output?
+    fileprivate var input: Input?
     
     struct Input {
-        let mainID: String?
     }
     
     struct Output {
-        public var sections: Driver&lt;[XXXSection]&gt;
-        var refreshState: BehaviorRelay&lt;RefreshState&gt;
-        public var reloadData: () -&gt; ()
-        public var loadMoreData: () -&gt; ()
+        var sections: Driver&lt;[Section]&gt;
+        var refreshState: Observable&lt;RefreshState&gt;
+        var metadata: Observable&lt;MetaData?&gt;
+        var reloadData: () -&gt; ()
+        var loadMoreData: () -&gt; ()
     }
     
     func transform(input: XXXVM.Input) -&gt; XXXVM.Output {
         self.input = input
         
         // tableview  绑定的数据源
-        let sections = models.skip(1).asObservable().map{ (list) -&gt; [XXXSection] in
+        let sections = models.skip(1).asObservable().map{ (list) -&gt; [Section] in
             return [SectionModel(model: "", items: list)]
         }.asDriver(onErrorJustReturn: [])
         
@@ -44,33 +47,37 @@
         
         // 加载数据
         loadData.flatMapLatest(selector: { [weak self] (p) -&gt; Observable&lt;[XXXModel]&gt; in
+            let params: [String: Any] = mergeParams(self?.params, [
+                "page": p,
+                "perPage": 10
+            ])
             return XXXProvider.rx
-            .request(XXXService)
-            .mapModel(XXXModel.self).asObservable()
-            .map { [weak self](res) -&gt; [XXXModel] in
-                let newState = res?.metadata?.refreshState ?? RefreshState.idle
-                refreshState.accept(newState)
-                self?.metaData = res?.metadata
-                let list = (res?.dataArr)!
-                return p == 1 ? list : (self?.models.value ?? []) + list
+                .request(XXXService)
+                .mapModel(XXXModel.self).asObservable()
+                .map { [weak self](res) -&gt; [XXXModel] in
+                    let newState = res?.metadata?.refreshState ?? RefreshState.idle
+                    refreshState.accept(newState)
+                    self?.metadata.accept(res?.metadata)
+                    let list = (res?.dataArr) ?? []
+                    return p == 1 ? list : (self?.models.value ?? []) + list
             }
         }) { [weak self] (error) in
             HudSingleton.dismiss()
             refreshState.accept(.idle)
             let list = self?.models.value ?? []
             self?.models.accept(list)
-        }.subscribe(onNext: { list in
+        }.subscribe(onNext: { [weak self] list in
             HudSingleton.dismiss()
-            self.models.accept(list)
+            self?.models.accept(list)
         }).disposed(by: disposeBag)
         
-        self.output = XXXVM.Output(
-        sections: sections,
-        refreshState: refreshState,
-        reloadData: reloadData,
-        loadMoreData: loadMoreData
+        return XXXVM.Output(
+            sections: sections,
+            refreshState: refreshState,
+            metadata: metadata.asObservable(),
+            reloadData: reloadData,
+            loadMoreData: loadMoreData
         )
-        return self.output!
     }
 }
 
@@ -82,17 +89,22 @@ extension XXXVM {
     }
     
     func loadMoreData() {
-        guard let t = metaData?.totalPages, page &lt; t  else {
+        guard let t = metadata.value?.totalPages, page &lt; t  else {
             return
         }
         page += 1
         loadData.onNext(page)
     }
-}</string>
+}
+</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>802DCE75-D5B4-4B19-8E65-C4CB80549C97</string>
 	<key>IDECodeSnippetLanguage</key>
-	<string>Xcode.SourceCodeLanguage.Generic</string>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetPlatformFamily</key>
+	<string>iphoneos</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
 	<key>IDECodeSnippetTitle</key>
 	<string>New VM</string>
 	<key>IDECodeSnippetUserSnippet</key>
