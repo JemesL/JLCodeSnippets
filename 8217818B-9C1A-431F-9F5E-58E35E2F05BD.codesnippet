@@ -11,7 +11,7 @@
 	<key>IDECodeSnippetContents</key>
 	<string>class &lt;#Value#&gt;: BaseTableViewCell {
 
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupViews()
         makeConstraints()
@@ -44,6 +44,8 @@ extension &lt;#Value#&gt; {
 	<string>8217818B-9C1A-431F-9F5E-58E35E2F05BD</string>
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Generic</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
 	<key>IDECodeSnippetTitle</key>
 	<string>new cell</string>
 	<key>IDECodeSnippetUserSnippet</key>

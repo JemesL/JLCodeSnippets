@@ -6,8 +6,8 @@
 	<string>newvm</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
-		<string>TopLevel</string>
 		<string>All</string>
+		<string>TopLevel</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
 	<string>import RxSwift
@@ -73,7 +73,7 @@ class XXXVM: BaseVM, ViewModelType {
         
         return XXXVM.Output(
             sections: sections,
-            refreshState: refreshState,
+            refreshState: refreshState.asObservable(),
             metadata: metadata.asObservable(),
             reloadData: reloadData,
             loadMoreData: loadMoreData

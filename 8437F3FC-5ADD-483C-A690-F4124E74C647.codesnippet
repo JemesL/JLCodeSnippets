@@ -10,10 +10,9 @@
 	</array>
 	<key>IDECodeSnippetContents</key>
 	<string>import UIKit
-fileprivate let Edge = UIEdgeInsets(top: 15, left: LEFT_RIGHT_MARGIN, bottom: 15, right: LEFT_RIGHT_MARGIN)
 
 class &lt;#value#&gt;: UIView {
-
+    fileprivate let edge = UIEdgeInsets(top: 15, left: LEFT_RIGHT_MARGIN, bottom: 15, right: LEFT_RIGHT_MARGIN)
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
